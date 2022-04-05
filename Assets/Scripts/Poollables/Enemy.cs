@@ -25,6 +25,8 @@ public class Enemy : MonoBehaviour, IDamagable
     private NavMeshAgent _agent;
     public event Action<int, int> DamageTaken;
     public event Action Death;
+    [SerializeField]
+    private bool _active;
 
     public void Init(Vector3 position, Quaternion orientation, Transform target, CubeFactory cubeFactory)
     {
@@ -60,7 +62,7 @@ public class Enemy : MonoBehaviour, IDamagable
     }
     private IEnumerator Repath()
     {
-        while (true)
+        while (_active)
         {
             _agent.SetDestination(_target.position);
             yield return new WaitForSeconds(_rePathInterval);

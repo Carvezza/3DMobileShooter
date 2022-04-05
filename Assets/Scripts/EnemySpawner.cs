@@ -74,4 +74,9 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(_spawnCoolDown);
         }
     }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(_player.position, _minimumDistanceToPlayer);
+    }
 }
